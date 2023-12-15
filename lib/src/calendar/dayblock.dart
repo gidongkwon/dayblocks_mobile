@@ -26,7 +26,7 @@ class _DayblockState extends State<Dayblock> {
   };
 
   String blockTitle = '';
-  List<Task> _allocatedTasks = [];
+  final List<Task> _allocatedTasks = [];
 
   void _showEditSheet(BuildContext context) {
     TextEditingController textFieldController =
@@ -92,13 +92,18 @@ class _DayblockState extends State<Dayblock> {
               color: colors[blockIndex]?.shade50,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
+                child: ListView(
                   children: [
-                    Flexible(
-                      child: Text(
-                          blockTitle.isNotEmpty ? blockTitle : placeholderText,
-                          style: TextStyle(color: colors[blockIndex]?.shade500, fontSize: 18, fontWeight: blockTitle.isNotEmpty ? FontWeight.bold : FontWeight.normal)),
-                    ),
+                    Text(
+                        blockTitle.isNotEmpty ? blockTitle : placeholderText,
+                        style: TextStyle(color: colors[blockIndex]?.shade500, fontSize: 18, fontWeight: blockTitle.isNotEmpty ? FontWeight.bold : FontWeight.normal)),
+                        ..._allocatedTasks.map((e) {
+                          return OutlinedButton(onPressed: () {
+                            setState(() {
+                              _allocatedTasks.removeWhere((element) => element.id == e.id);
+                            });
+                        }, child: Text(e.title));
+                      }).toList()
                   ],
                 ),
               ),
