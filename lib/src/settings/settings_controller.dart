@@ -20,24 +20,21 @@ class SettingsController with ChangeNotifier {
   // Make ThemeMode a private variable so it is not updated directly without
   // also persisting the changes with the SettingsService.
   late ThemeMode _themeMode;
+  late int _startOfWeek;
 
   // Allow Widgets to read the user's preferred ThemeMode.
   ThemeMode get themeMode => _themeMode;
+  int get startOfWeek => _startOfWeek;
 
   /// Load the user's settings from the SettingsService. It may load from a
   /// local database or the internet. The controller only knows it can load the
   /// settings from the service.
   Future<void> loadSettings() async {
     _themeMode = await _settingsService.themeMode();
+    _startOfWeek = await _settingsService.startOfWeek();
 
     // Important! Inform listeners a change has occurred.
     notifyListeners();
-  }
-
-  Future<File> _getLocalFile() async {
-    final directory = await getApplicationDocumentsDirectory();
-    logger.log(directory.path);
-    return File('${directory.path}/selectedDrugs.json');
   }
 
   /// Update and persist the ThemeMode based on the user's selection.
@@ -56,5 +53,14 @@ class SettingsController with ChangeNotifier {
     // Persist the changes to a local database or the internet using the
     // SettingService.
     await _settingsService.updateThemeMode(newThemeMode);
+  }
+
+  Future<void> updateStartOfWeek(int? day) async {
+    if (day == null) return;
+    if (day == _startOfWeek) return;
+
+    _startOfWeek = day;
+    notifyListeners();
+    await _settingsService.updateStartOfWeek(day);
   }
 }

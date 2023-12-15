@@ -3,13 +3,13 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'sample_feature/sample_item_details_view.dart';
-import 'sample_feature/sample_item_list_view.dart';
+import 'calendar/calendar_view.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
 /// The Widget that configures your application.
-class MyApp extends StatelessWidget {
-  const MyApp({
+class DayblocksApp extends StatelessWidget {
+  const DayblocksApp({
     super.key,
     required this.settingsController,
   });
@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('ko', ''), // English, no country code
+            Locale('ko', ''),
           ],
 
           // Use AppLocalizations to configure the correct application title
@@ -71,9 +71,9 @@ class MyApp extends StatelessWidget {
                     return SettingsView(controller: settingsController);
                   case SampleItemDetailsView.routeName:
                     return const SampleItemDetailsView();
-                  case SampleItemListView.routeName:
+                  case CalendarView.routeName:
                   default:
-                    return const SampleItemListView();
+                    return CalendarView(controller: settingsController);
                 }
               },
             );
