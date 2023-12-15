@@ -84,6 +84,7 @@ class _DayblockState extends State<Dayblock> {
     return DragTarget<Task>(
       builder: (context, candidates, rejectedItems) {
         return GestureDetector(
+          behavior: HitTestBehavior.translucent,
           onTap: () => _showEditSheet(context),
           child: SizedBox(
             width: widget.date.isToday ? 250 : 150,
