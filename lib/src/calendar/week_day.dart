@@ -1,3 +1,4 @@
+import 'package:dayblocks_mobile/src/calendar/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -13,9 +14,9 @@ class WeekDay extends StatelessWidget {
     return Column(children: [
       Column(
         children: [
-          Text(DateFormat('E').format(date), style: Theme.of(context).textTheme.titleSmall),
+          Text(DateFormat('E').format(date), style: Theme.of(context).textTheme.titleSmall?.copyWith(color: date.isToday ? Colors.blue : null)),
           const SizedBox(height: 6),
-          Text(DateFormat('dd').format(date), style: Theme.of(context).textTheme.titleLarge),
+          Text(DateFormat('dd').format(date), style: Theme.of(context).textTheme.titleLarge?.copyWith(color: date.isToday ? Colors.blue : null)),
         ],
       ),
       Expanded(
