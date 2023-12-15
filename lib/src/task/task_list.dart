@@ -103,8 +103,8 @@ class _TaskListState extends State<TaskList> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
-      surfaceTintColor: Colors.white,
+      color: Theme.of(context).dialogBackgroundColor,
+      surfaceTintColor: Color.fromARGB(127, 255, 255, 255),
       elevation: 12,
       child: Container(
         height: 380,
