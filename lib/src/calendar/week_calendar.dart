@@ -12,7 +12,7 @@ class WeekCalendar extends StatelessWidget {
   Widget build(BuildContext context) {
     final DateTime startOfWeekDate = mostRecentWeekday(referenceDate, startOfWeek);
 
-    return Container(
+    return SizedBox(
       height: double.infinity,
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,

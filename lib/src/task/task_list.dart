@@ -129,7 +129,7 @@ class _TaskListState extends State<TaskList> {
                             feedback: _DraggingTaskIndicator(data: e, dragKey: _draggableKey,),
                             child: ListTile(
                             title: Text(e.title),
-                          trailing: IconButton(icon: Icon(Icons.delete), onPressed: () => {
+                          trailing: IconButton(icon: const Icon(Icons.delete), onPressed: () => {
                             setState(() {
                               _tasks.removeWhere((element) => element.id == e.id);
                             })

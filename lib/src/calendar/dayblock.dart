@@ -86,7 +86,7 @@ class _DayblockState extends State<Dayblock> {
         return GestureDetector(
           onTap: () => _showEditSheet(context),
           child: SizedBox(
-            width: widget.date.isToday ? 200 : 100,
+            width: widget.date.isToday ? 250 : 150,
             child: Card(
               elevation: 0,
               color: colors[blockIndex]?.shade50,
